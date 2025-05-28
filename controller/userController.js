@@ -1,20 +1,20 @@
 const express = require('express');
 const router=express.Router();
-const userService= require('../services/users');
+const userService= require('../service/userService');
 
-routrt.get('/',(req,res)=>{
-    const allUsers=userService.getUsers();
+router.get('/allUsers',(req,res)=>{
+    const allUsers=userService.getAllUsers();
     res.json(allUsers);
 });
 
 
-routrt.post('/',(req,res)=>{
+router.post('/create',(req,res)=>{
     const {name,email} = req.body;
 
-    if(!name || email) {
-        return res.status(400).json({message: 'Name and email required'})
+    if(!name || !email) {
+        return res.status(400).json({message: 'name and email required'})
     }
-      const newUser = userService.createUser(name, email);
+      const newUser = userService.creatUsers(name, email);
   res.status(201).json(newUser);
 });
 
@@ -42,7 +42,7 @@ router.delete('/:id', (req, res) => {
     return res.status(404).json({ message: 'User not found' });
   }
 
-  res.status(204).send(); // No content, success
+  res.status(204).send(); 
 });
 
 module.exports = router;

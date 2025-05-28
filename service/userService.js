@@ -8,7 +8,7 @@ const getAllUsers = ()=>{
 
 const creatUsers=(name,email)=>{
     const id= Date.now().toString();
-    const users= new UserDTO(id,name,email);
+    const user = new UserDTO(id,name,email);
     users.push(user);
     return user;
 }
